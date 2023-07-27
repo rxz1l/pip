@@ -187,6 +187,7 @@ if (!is.null(kk)&&dim(kk)[1]!= 0){
       dplyr::distinct(ENTREZID, .keep_all = T) %>% column_to_rownames(var = "ENTREZID")
     pathview(gene.data = gene, pathway.id = pathid, species = "hsa", out.suffix = "gene_fc", kegg.native = T, same.layer=F)
   })
+  pathid
 }else{
   print('KEGG up Not enriched')
 }
@@ -259,14 +260,22 @@ sample_list = SampleNames %>% str_split(",") %>% .[[1]]
 walk(c("ratio", "average"), function(x){
   outdir = str_glue("{outdir}/{x}")
   dir.create(outdir, recursive = T)
-  if(sample_list %>% length() > 1){
 
-    ob.list_up = map2(sample_list, path_list, function(sample, path){
-      a = read.csv(path, header=T, sep='\t')
-      up = a %>% filter(!!sym(str_glue("cell_{x}_diff")) > 0.4) %>% dplyr::select(Gene_name, !!sym(str_glue("cell_{x}_diff"))) %>% 
-        dplyr::rename(SYMBOL = Gene_name, logFC = !!sym(str_glue("cell_{x}_diff")))
+
+  ob.list_up = map2(sample_list, path_list, function(sample, path){
+    a = read.csv(path, header=T, sep='\t')
+    up = a %>% filter(!!sym(str_glue("cell_{x}_diff")) > 0.4) %>% dplyr::select(Gene_name, !!sym(str_glue("cell_{x}_diff"))) %>% 
+    dplyr::rename(SYMBOL = Gene_name, logFC = !!sym(str_glue("cell_{x}_diff")))
       })
-    names(ob.list_up) = sample_list
+  names(ob.list_up) = sample_list
+
+  ob.list_down = map2(sample_list, path_list, function(sample, path){
+    a = read.csv(path, header=T, sep='\t')
+    up = a %>% filter(!!sym(str_glue("cell_{x}_diff")) < -0.4) %>% dplyr::select(Gene_name, !!sym(str_glue("cell_{x}_diff"))) %>% 
+    dplyr::rename(SYMBOL = Gene_name, logFC = !!sym(str_glue("cell_{x}_diff")))
+    })
+    names(ob.list_down) = sample_list
+  if(sample_list %>% length() > 1){
     # ob.list_up <- list(
     # ob.list_up[['T_MvsTHP1']] <- up1
     # ob.list_up[['R-S1-RAW-coA3LvsR-S2-RAW']] <- up2
@@ -290,12 +299,7 @@ walk(c("ratio", "average"), function(x){
 
     sample_list = SampleNames %>% str_split(",") %>% .[[1]]
 
-    ob.list_down = map2(sample_list, path_list, function(sample, path){
-      a = read.csv(path, header=T, sep='\t')
-      up = a %>% filter(!!sym(str_glue("cell_{x}_diff")) < -0.4) %>% dplyr::select(Gene_name, !!sym(str_glue("cell_{x}_diff"))) %>% 
-        dplyr::rename(SYMBOL = Gene_name, logFC = !!sym(str_glue("cell_{x}_diff")))
-      })
-    names(ob.list_down) = sample_list
+
     gene_down_list = lapply(sample_list, function(x) x = ob.list_down[[x]]$SYMBOL)
     names(gene_down_list) = sample_list
 
@@ -341,11 +345,26 @@ walk(c("ratio", "average"), function(x){
 
     ###up
     up_fc = data.frame(SYMBOL = up, logFC = 1)
-    enrich_function(genelist = up_fc, ud = "up", outdir = outdir_all, species = species, cell_type = cell_type)
+    kegg_up = enrich_function(genelist = up_fc, ud = "up", outdir = outdir_all, species = species, cell_type = cell_type)
 
     ###down
     down_fc = data.frame(SYMBOL = down, logFC = -1)
-    enrich_function(genelist = down_fc, ud = "down", outdir = outdir_all, species = species, cell_type = cell_type)
+    kegg_down = enrich_function(genelist = down_fc, ud = "down", outdir = outdir_all, species = species, cell_type = cell_type)
+
+    ###pathview
+    all_fc = rbind(up_fc, down_fc)
+    kegg_all = c(kegg_up, kegg_down) %>% unique()
+    if(!is.null(kegg_all)){
+      dir.create(str_glue("{outdir_all}/KEGG/pathview_all"), recursive = T)
+      setwd(str_glue("{outdir_all}/KEGG/pathview_all"))
+      walk(kegg_all, function(pathid){
+      gene = all_fc %>% dplyr::pull(SYMBOL) %>% bitr(fromType = "SYMBOL", toType = "ENTREZID", OrgDb="org.Hs.eg.db") %>% 
+        inner_join(all_fc, by = "SYMBOL") %>% dplyr::select(ENTREZID, logFC) %>% 
+        dplyr::distinct(ENTREZID, .keep_all = T) %>% column_to_rownames(var = "ENTREZID")
+      pathview(gene.data = gene, pathway.id = pathid, species = "hsa", out.suffix = "gene_fc", kegg.native = T, same.layer=F)
+      })
+    }
+
   }
 
   ####each sample enrich
@@ -358,10 +377,24 @@ walk(c("ratio", "average"), function(x){
     dir.create(file.path(outdir, "GO"), recursive = T)
 
     ###up
-    enrich_function(genelist = ob.list_up[[sample]], ud = "up", outdir = outdir, species = species, cell_type = cell_type)
+    kegg_up = enrich_function(genelist = ob.list_up[[sample]], ud = "up", outdir = outdir, species = species, cell_type = cell_type)
 
     ###down
-    enrich_function(genelist = ob.list_down[[sample]], ud = "down", outdir = outdir, species = species, cell_type = cell_type)
+    kegg_down = enrich_function(genelist = ob.list_down[[sample]], ud = "down", outdir = outdir, species = species, cell_type = cell_type)
+
+    ###pathway
+    all_fc = rbind(ob.list_up[[sample]], ob.list_down[[sample]])
+    kegg_all = c(kegg_up, kegg_down) %>% unique()
+    if(!is.null(kegg_all)){
+      dir.create(str_glue("{outdir}/KEGG/pathview_all"), recursive = T)
+      setwd(str_glue("{outdir}/KEGG/pathview_all"))
+      walk(kegg_all, function(pathid){
+      gene = all_fc %>% dplyr::pull(SYMBOL) %>% bitr(fromType = "SYMBOL", toType = "ENTREZID", OrgDb="org.Hs.eg.db") %>% 
+        inner_join(all_fc, by = "SYMBOL") %>% dplyr::select(ENTREZID, logFC) %>% 
+        dplyr::distinct(ENTREZID, .keep_all = T) %>% column_to_rownames(var = "ENTREZID")
+      pathview(gene.data = gene, pathway.id = pathid, species = "hsa", out.suffix = "gene_fc", kegg.native = T, same.layer=F)
+      })
+    }   
   })
 })
   
