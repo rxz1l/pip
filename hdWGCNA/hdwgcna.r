@@ -2,7 +2,7 @@
  # @Author: renxz 409368950@qq.com
  # @Date: 2023-09-08 14:28:11
  # @LastEditors: renxz 409368950@qq.com
- # @LastEditTime: 2023-09-11 11:23:01
+ # @LastEditTime: 2023-11-03 17:26:05
  # @FilePath: /pipline/hdWGCNA/hdwgcna.r
  # @Description: single cell wgcna 
  # @
@@ -68,7 +68,7 @@ option_list <- list(
   ), 
   make_option(c("-k", "--group_by_vars"), type = "character", default = NULL,
               action = "store", help = "groups to harmonize, the sample column of data"
-  ),  
+  )
 )
 
 ## 解析参数
