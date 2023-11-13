@@ -1,0 +1,11 @@
+scdrs compute-score \
+    --h5ad-file /public/work/Project/Single_cell/kangxuhe_mmy/07.GWAS/scDRS/data/test.h5ad \
+    --h5ad-species mouse \
+    --gs-file /public/work/Project/Single_cell/kangxuhe_mmy/07.GWAS/scDRS/data/T2D.gs  \
+    --gs-species mouse \
+    --cov-file /public/work/Project/Single_cell/kangxuhe_mmy/07.GWAS/scDRS/data/cov.tsv \
+    --flag-filter-data True \
+    --flag-raw-count True \
+    --flag-return-ctrl-raw-score False \
+    --flag-return-ctrl-norm-score True \
+    --out-folder /public/work/Personal/renxiaozhen/pipline/scDRS/data1/

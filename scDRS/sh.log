@@ -1,0 +1,115 @@
+nohup: ignoring input
+/public/work/Personal/renxiaozhen/software/miniconda3/envs/scDRS/lib/python3.11/site-packages/anndata/_core/anndata.py:1113: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if not is_categorical_dtype(df_full[k]):
+/public/work/Personal/renxiaozhen/software/miniconda3/envs/scDRS/lib/python3.11/site-packages/anndata/_core/anndata.py:1113: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if not is_categorical_dtype(df_full[k]):
+/public/work/Personal/renxiaozhen/software/miniconda3/envs/scDRS/lib/python3.11/site-packages/anndata/_core/anndata.py:1113: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if not is_categorical_dtype(df_full[k]):
+******************************************************************************
+* Single-cell disease relevance score (scDRS)
+* Version 1.0.3
+* Martin Jinye Zhang and Kangcheng Hou
+* HSPH / Broad Institute / UCLA
+* MIT License
+******************************************************************************
+Call: scdrs compute-score \
+--h5ad-file /public/work/Project/Single_cell/kangxuhe_mmy/07.GWAS/scDRS/data/test.h5ad \
+--h5ad-species mouse \
+--cov-file /public/work/Project/Single_cell/kangxuhe_mmy/07.GWAS/scDRS/data/cov.tsv \
+--gs-file /public/work/Project/Single_cell/kangxuhe_mmy/07.GWAS/scDRS/data/T2D.gs \
+--gs-species mouse \
+--ctrl-match-opt mean_var \
+--weight-opt vs \
+--adj-prop None \
+--flag-filter-data True \
+--flag-raw-count True \
+--n-ctrl 1000 \
+--min-genes 250 \
+--min-cells 50 \
+--flag-return-ctrl-raw-score False \
+--flag-return-ctrl-norm-score True \
+--out-folder /public/work/Personal/renxiaozhen/pipline/scDRS/data1/
+
+Loading data:
+--h5ad-file loaded: n_cell=250402, n_gene=30857 (sys_time=230.5s)
+First 3 cells: ['CELL23_N2-WT-X1', 'CELL6334_N1-WT-X1', 'CELL3434_N1-WT-X1']
+First 5 genes: ['Mier3', 'H3f3a', 'Eef2', 'Lemd3', 'Prps1l3']
+--cov-file loaded: covariates=['const', 'nFeature_RNA'] (sys_time=234.0s)
+n_cell=250981 (250402 in .h5ad)
+First 3 cells: ['CELL23_N2-WT-X1', 'CELL6334_N1-WT-X1', 'CELL3434_N1-WT-X1']
+First 5 values for 'const': [1, 1, 1, 1, 1]
+First 5 values for 'nFeature_RNA': [1914, 1809, 1777, 2534, 1563]
+--gs-file loaded: n_trait=65 (sys_time=234.3s)
+Print info for first 3 traits:
+First 3 elements for '2hr-plasma-free-fatty-acids.list.name': [], []
+First 3 elements for 'Abdominal-age.list.name': ['F2', 'C2'], [1.0, 1.0]
+First 3 elements for 'Abdominal-subcutaneous-adipose-tissue-volume.list.name': [], []
+
+Preprocessing:
+
+Computing scDRS score:
+trait=2hr-plasma-free-fatty-acids.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Abdominal-age.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Abdominal-subcutaneous-adipose-tissue-volume.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Acetate.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Acetoacetate.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Acute-insulin-response-adj-BMI-SI.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Acute-insulin-response-adj-SI.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Acute-insulin-response.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Adiponectin.list.name: skipped due to small size (n_gene=1, sys_time=1905.7s)
+trait=AF-age-65-and-under.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=AF-over-age-65.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=AF-over-age.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=AF-SNP-age-interaction.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=AF-SNP-BMI-interaction.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=AF-SNP-hypertension-interaction.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=AF-SNP-sex-interaction.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Age-related-macular-degeneration.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Alanine.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Alanine-transaminase.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=Albuminuria-in-type-2-diabetes.list.name: skipped due to small size (n_gene=1, sys_time=1905.7s)
+trait=Alkaline-phosphatase.list.name: skipped due to small size (n_gene=4, sys_time=1905.7s)
+trait=AMD-progression.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Any-cancer.list.name: skipped due to small size (n_gene=1, sys_time=1905.7s)
+trait=Any-cardiovascular-disease.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Apnea-Hypopnea-Index-in-NREM-sleep.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Apnea-Hypopnea-Index.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Area-under-the-curve-for-insulin.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Arm-fat-ratio.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=ASAT-adjusted-for-BMI-and-height.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=ASAT-to-GFAT-ratio.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Ascending-aorta-diameter.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Aspartate-aminotransferase.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=AST-ALT-ratio.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=Atrial-fibrillation.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=AUCins-over-AUCgluc.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Blood-urea-nitrogen.list.name: skipped due to small size (n_gene=6, sys_time=1905.7s)
+trait=BMI-adj-smoking-status.list.name: skipped due to small size (n_gene=1, sys_time=1905.7s)
+trait=Body-fat-percentage.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Body-mass-index.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Calcium.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=Cardiovascular-disease-in-type2diabetes.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Childhood-obesity.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Chloride.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=Chronic-kidney-disease.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=Chronotype.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Cirrhosis.list.name: skipped due to small size (n_gene=1, sys_time=1905.7s)
+trait=Citrate.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Claudication-in-type-2-diabetes.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Coronary-artery-disease.list.name: skipped due to small size (n_gene=1, sys_time=1905.7s)
+trait=Corrected-insulin-response.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Creatine-kinase.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Extreme-chronic-kidney-disease-in-type-2-diabetes.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Fasting-C-peptide.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Hypertrophic-cardiomyopathy.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Maximum-ascending-aorta-diameter-BSA-indexed.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Plasma-C-reactive-protein.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Serum-albumin.list.name: skipped due to small size (n_gene=2, sys_time=1905.7s)
+trait=Serum-ApoA.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=Sleep-duration-in-children.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Total-cholesterol.list.name: skipped due to small size (n_gene=3, sys_time=1905.7s)
+trait=Two-hour-C-peptide.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Two-hour-glucose-adj-BMI.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Two-hour-glucose.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Two-hour-insulin.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
+trait=Urinary-albumin.list.name: skipped due to small size (n_gene=0, sys_time=1905.7s)
