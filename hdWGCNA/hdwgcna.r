@@ -2,7 +2,7 @@
  # @Author: renxz 409368950@qq.com
  # @Date: 2023-09-08 14:28:11
  # @LastEditors: renxz 409368950@qq.com
- # @LastEditTime: 2023-11-03 17:26:05
+ # @LastEditTime: 2023-11-13 15:20:20
  # @FilePath: /pipline/hdWGCNA/hdwgcna.r
  # @Description: single cell wgcna 
  # @
@@ -51,6 +51,9 @@ option_list <- list(
               action = "store", help = "A character vector of Seurat metadata column names representing groups for which metacells will be computed.
                                         If you specify multiple groups, please use comma (,) to separate them."
   ), 
+  make_option(c("-l", "--group_name"), type = "character", default = NULL,
+              action = "store", help = "subset data"
+  ),
   make_option(c("-f", "--ident_group"), type = "character", default = NULL,
               action = "store", help = "set the Idents of the metacell seurat object"
   ), 
@@ -86,7 +89,8 @@ min_cells = opt$min_cells
 outdir = opt$outdir
 group_by_vars = opt$group_by_vars
 
-
+group_by = group_by %>% str_split(",") %>% .[[1]]
+group_name = group_name %>% str_split(",") %>% .[[1]]
 
 # wgcna ----------------------------------------------------------------------------------
 ## load data
@@ -151,37 +155,38 @@ seurat_obj <- NormalizeMetacells(seurat_obj)
 # p1 <- DimPlotMetacells(seurat_obj, group.by='manual_pred_celltype') + umap_theme() + ggtitle("manual_pred_celltype")
 # p2 <- DimPlotMetacells(seurat_obj, group.by='sample') + umap_theme() + ggtitle("sample")
 
-# p1 | p2
-celltype = data@meta.data %>% pull(group_by)
+# # p1 | p2
+# celltype = data@meta.data %>% pull(group_by)
 ## WGCNA analysis by cell grouping ----
-walk(celltype, function(x){
+# walk(celltype, function(x){
   ## Co-expression network analysis -----------------------------------------
   ### Set up the expression matrix
   #> 使用参数`group.by`指定要分析的细胞分组, 使用参数`group_name`指定要分析的分组中的子集 
+if(group_name != NULL) {
   seurat_obj <- SetDatExpr(
-    seurat_obj,
-    group_name = x, # the name of the group of interest in the group.by column
-    group.by = group_by, # the metadata column containing the cell type info. This same column should have also been used in MetacellsByGroups
-    assay = 'RNA', # using RNA assay
-    slot = 'data' # using normalized data
-  )
-
+      seurat_obj,
+      group_name = group_name, # the name of the group of interest in the group.by column
+      group.by = group_by, # the metadata column containing the cell type info. This same column should have also been used in MetacellsByGroups
+      assay = 'RNA', # using RNA assay
+      slot = 'data' # using normalized data
+    )
+}
+  
   ### Select a soft threshold
   #### Test different soft powers:
   seurat_obj <- TestSoftPowers(
     seurat_obj,
-    group_name = x, # the name of the group of interest in the group.by column
-    group.by = group_by # the metadata column containing the cell type info. This same column should have also been used in MetacellsByGroups
+    networkType = 'signed' # you can also use "unsigned" or "signed hybrid" 
   )
 
   #### plot the results:
   plot_list <- PlotSoftPowers(seurat_obj)
 
   #### assemble with patchwork
-  dir.create(str_glue("{outdir}/{x}/figure"), recursive = T)
+  dir.create(str_glue("{outdir}/figure"), recursive = T)
   p = wrap_plots(plot_list, ncol=2)
-  ggsave(p, filename = str_glue("{outdir}/{x}/figure/SoftPowers.pdf"), width=12, height=6)
-  ggsave(p, filename = str_glue("{outdir}/{x}/figure/SoftPowers.png"), width=12, height=6)
+  ggsave(p, filename = str_glue("{outdir}/figure/SoftPowers.pdf"), width=12, height=6)
+  ggsave(p, filename = str_glue("{outdir}/figure/SoftPowers.png"), width=12, height=6)
 
   #### table of TestSoftPowers
   power_table <- GetPowerTable(seurat_obj)
@@ -189,21 +194,21 @@ walk(celltype, function(x){
 
   ### Construct a co-expression network:
   seurat_obj <- ConstructNetwork(
-    seurat_obj, soft_power=select_soft_power,
-    setDatExpr=FALSE,
-    tom_name = x, # name of the topoligical overlap matrix written to disk
-    tom_outdir = str_glue("{outdir}/{x}/TOM")
+    seurat_obj, soft_power = select_soft_power,
+    setDatExpr = FALSE,
+    tom_name = "TOM", # name of the topoligical overlap matrix written to disk
+    tom_outdir = str_glue("{outdir}/TOM")
   )
 
   ### Visualization of co-expression networks
-  pdf(str_glue('{outdir}/{x}/figure//Visualization of co-expression networks.pdf'))
-  PlotDendrogram(seurat_obj, main= str_glue('{x} hdWGCNA Dendrogram'))
+  pdf(str_glue('{outdir}/figure//Visualization of co-expression networks.pdf'))
+  PlotDendrogram(seurat_obj, main = str_glue('hdWGCNA Dendrogram'))
   dev.off()
 
   ### Modular gene
-  dir.create(str_glue("{outdir}/{x}/table"), recursive = T)
+  dir.create(str_glue("{outdir}/table"), recursive = T)
   modular_gene = seurat_obj@misc$tutorial$wgcna_modules
-  write.csv(modular_gene, str_glue('{outdir}/{x}/table/wgcna_modules.csv'))
+  write.csv(modular_gene, str_glue('{outdir}/table/wgcna_modules.csv'))
 
   # ### inspect the topoligcal overlap matrix (TOM)
   # TOM <- GetTOM(seurat_obj)
@@ -214,7 +219,7 @@ walk(celltype, function(x){
   #> Module Eigengenes (MEs) 是一种常用的指标，用于总结整个共表达模块的基因表达谱。
   #> 模块特征基因是通过对包含每个模块的基因表达矩阵的子集执行主成分分析 (PCA) 来计算的, 这些 PCA 矩阵中的第一个PC 就是 ME。
   #### need to run ScaleData first or else harmony throws an error:
-  seurat_obj <- ScaleData(seurat_obj, features=VariableFeatures(seurat_obj))
+  seurat_obj <- ScaleData(seurat_obj, features = VariableFeatures(seurat_obj))
 
   #### compute all MEs in the full single-cell dataset
   seurat_obj <- ModuleEigengenes(
@@ -224,17 +229,17 @@ walk(celltype, function(x){
 
   #### harmonized module eigengenes:
   hMEs <- GetMEs(seurat_obj) #每个细胞对于每个模块的特征值
-  write.csv(hMEs, str_glue('{outdir}/{x}/table/hMEs.csv'))
+  write.csv(hMEs, str_glue('{outdir}/table/hMEs.csv'))
 
   #### module eigengenes:
   MEs <- GetMEs(seurat_obj, harmonized=FALSE)
-  write.csv(MEs, str_glue('{outdir}/{x}/table/MEs.csv'))
+  write.csv(MEs, str_glue('{outdir}/table/MEs.csv'))
 
   ### Compute module connectivity
   #### compute eigengene-based connectivity (kME):
   seurat_obj <- ModuleConnectivity(
     seurat_obj,
-    group.by = group_by, group_name = x
+    group.by = group_by, group_name = group_name
   )
 
   #### plot genes ranked by kME for each module
@@ -243,69 +248,69 @@ walk(celltype, function(x){
   ncol = vec[((vec %>% length()) %/% 2 + 1)]
 
   p <- PlotKMEs(seurat_obj, ncol = ncol)
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/kMEs.png'))
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/kMEs.pdf'))
+  ggsave(p, filename = str_glue('{outdir}/figure/kMEs.png'))
+  ggsave(p, filename = str_glue('{outdir}/figure/kMEs.pdf'))
 
   ### Getting the module assignment table
   #### get the module assignment table:
   modules <- GetModules(seurat_obj)
-  write.csv(modules, str_glue('{outdir}/{x}/table/modules.csv'))
+  write.csv(modules, str_glue('{outdir}/table/modules.csv'))
 
   #### get hub genes
   hub_df <- GetHubGenes(seurat_obj, n_hubs = n_hubs)
-  write.csv(hub_df, str_glue('{outdir}/{x}/table/hub_genes.csv'))
+  write.csv(hub_df, str_glue('{outdir}/table/hub_genes.csv'))
 
   ### compute gene scoring for the top 25 hub genes by kME for each module
   #### with Seurat method
   seurat_obj <- ModuleExprScore(
     seurat_obj,
     n_genes = 25,
-    method='Seurat'
+    method ='Seurat'
   )
 
   #### with UCell method
   seurat_obj <- ModuleExprScore(
     seurat_obj,
     n_genes = 25,
-    method='UCell'
+    method ='UCell'
   )
 
   ### saveRDS
-  saveRDS(seurat_obj, str_glue("{outdir}/{x}/hdWGCNA_object.rds"))
+  saveRDS(seurat_obj, str_glue("{outdir}/hdWGCNA_object.rds"))
 
   ## Basic Visualization ----
   ### Module Feature Plots
   #### make a featureplot of hMEs for each module
   plot_list <- ModuleFeaturePlot(
     seurat_obj,
-    features='hMEs', # plot the hMEs
-    order=TRUE # order so the points with highest hMEs are on top
+    features = 'hMEs', # plot the hMEs
+    order = TRUE # order so the points with highest hMEs are on top
   )
 
   #### stitch together with patchwork
   p = wrap_plots(plot_list, ncol = ncol)
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/featureplot.png'))
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/featureplot.pdf'))
+  ggsave(p, filename = str_glue('{outdir}/figure/featureplot.png'))
+  ggsave(p, filename = str_glue('{outdir}/figure/featureplot.pdf'))
 
   #### make a featureplot of hub scores for each module
   plot_list <- ModuleFeaturePlot(
     seurat_obj,
-    features='scores', # plot the hub gene scores
-    order='shuffle', # order so cells are shuffled
+    features = 'scores', # plot the hub gene scores
+    order = 'shuffle', # order so cells are shuffled
     ucell = TRUE # depending on Seurat vs UCell for gene scoring
   )
 
   #### stitch together with patchwork
   p = wrap_plots(plot_list, ncol = ncol)
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/feature_score_plot.png'))
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/feature_score_plot.pdf'))
+  ggsave(p, filename = str_glue('{outdir}/figure/feature_score_plot.png'))
+  ggsave(p, filename = str_glue('{outdir}/figure/feature_score_plot.pdf'))
 
   ### Module Correlations
-  png(str_glue('{outdir}/{x}/figure/Correlations_plot.png'))
+  png(str_glue('{outdir}/figure/Correlations_plot.png'))
   ModuleCorrelogram(seurat_obj)
   dev.off()
 
-  pdf(str_glue('{outdir}/{x}/figure/Correlations_plot.pdf'))
+  pdf(str_glue('{outdir}/figure/Correlations_plot.pdf'))
   ModuleCorrelogram(seurat_obj)
   dev.off()
 
@@ -328,16 +333,16 @@ walk(celltype, function(x){
     scale_color_gradient2(high='red', mid='grey95', low='blue')
 
   #### plot output
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/seurat_dotplot.png'))
-  ggsave(p, filename = str_glue('{outdir}/{x}/figure/seurat_dotplot.pdf'))
+  ggsave(p, filename = str_glue('{outdir}/figure/seurat_dotplot.png'))
+  ggsave(p, filename = str_glue('{outdir}/figure/seurat_dotplot.pdf'))
 
 
   ### Network Visualization 
-  ModuleNetworkPlot(seurat_obj, outdir = str_glue("{outdir}/{x}/figure/ModuleNetworks"))
+  ModuleNetworkPlot(seurat_obj, outdir = str_glue("{outdir}/figure/ModuleNetworks"))
 
   ### Combined hub gene network plots
   #### hubgene network
-  pdf(str_glue("{outdir}/{x}/figure/ModuleNetworks/HubGeneNetworkPlot.pdf"))
+  pdf(str_glue("{outdir}/figure/ModuleNetworks/HubGeneNetworkPlot.pdf"))
   HubGeneNetworkPlot(
     seurat_obj,
     n_hubs = 3, n_other=5,
@@ -346,7 +351,7 @@ walk(celltype, function(x){
   )
   dev.off()
 
-  png(str_glue("{outdir}/{x}/figure/ModuleNetworks/HubGeneNetworkPlot.png"))
+  png(str_glue("{outdir}/figure/ModuleNetworks/HubGeneNetworkPlot.png"))
   HubGeneNetworkPlot(
     seurat_obj,
     n_hubs = 3, n_other=5,
@@ -363,7 +368,7 @@ walk(celltype, function(x){
     min_dist=0.1 # min distance between points in UMAP space
   )
 
-  png(str_glue("{outdir}/{x}/figure/ModuleNetworks/ModuleUMAPPlot.png"))
+  png(str_glue("{outdir}/figure/ModuleNetworks/ModuleUMAPPlot.png"))
   ModuleUMAPPlot(
     seurat_obj,
     edge.alpha=0.25,
@@ -374,7 +379,7 @@ walk(celltype, function(x){
   )
   dev.off()
 
-  pdf(str_glue("{outdir}/{x}/figure/ModuleNetworks/ModuleUMAPPlot.pdf"))
+  pdf(str_glue("{outdir}/figure/ModuleNetworks/ModuleUMAPPlot.pdf"))
   ModuleUMAPPlot(
     seurat_obj,
     edge.alpha=0.25,
@@ -384,4 +389,4 @@ walk(celltype, function(x){
     keep_grey_edges=FALSE
   )
   dev.off()
-})
+# })
