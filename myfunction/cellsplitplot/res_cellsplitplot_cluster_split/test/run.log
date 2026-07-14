@@ -1,0 +1,210 @@
+nohup: ignoring input
+==========================================================
+ 运行环境及参数确认:
+ 组名 (Group):          data
+ 初始输入 CSV 文件:     /share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75551/script/cellsplit/data/SR_hm_0.4.csv
+ 输入 NPY 文件:         /share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+ 细胞拆分输出目录:      /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data
+==========================================================
+>>> 步骤 1/2: 正在运行细胞拆分脚本 (split_b2c.sh)...
+输出目录为: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data
+【完成】清洗后的完整数据已保存至: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cleaned_all_data.csv
+【完成】所有 Cluster 拆分文件已保存在目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/
+----------------------------------------
+【成功】细胞拆分步骤已完成，文件已成功生成至 /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data。
+----------------------------------------------------------
+>>> 步骤 2/2: 开始批量绘制 /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data 下的所有 CSV 图表...
+----------------------------------------------------------
+正在处理子文件: cleaned_all_data.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cleaned_all_data
+----------------------------------------------------------
+--- [INFO] 已成功提取并锁定总图的全局颜色映射 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cleaned_all_data.csv', '--cluster_and_color', '0:#E64B35B2,1:#4DBBD5B2,2:#00A087B2,3:#F39B7FB2,4:#fbb612,5:#ba2f7b,6:#8491B4B2,7:#3C5488B2,8:#91D1C2B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cleaned_all_data']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cleaned_all_data.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cleaned_all_data
+redo:False
+cluster_and_color0:#E64B35B2,1:#4DBBD5B2,2:#00A087B2,3:#F39B7FB2,4:#fbb612,5:#ba2f7b,6:#8491B4B2,7:#3C5488B2,8:#91D1C2B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cleaned_all_data.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_0.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_0
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 0 在总图中的对应颜色: 0:#E64B35B2 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_0.csv', '--cluster_and_color', '0:#E64B35B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_0']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_0.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_0
+redo:False
+cluster_and_color0:#E64B35B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_0.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_1.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_1
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 1 在总图中的对应颜色: 1:#4DBBD5B2 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_1.csv', '--cluster_and_color', '1:#4DBBD5B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_1']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_1.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_1
+redo:False
+cluster_and_color1:#4DBBD5B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_1.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_2.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_2
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 2 在总图中的对应颜色: 2:#00A087B2 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_2.csv', '--cluster_and_color', '2:#00A087B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_2']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_2.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_2
+redo:False
+cluster_and_color2:#00A087B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_2.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_3.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_3
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 3 在总图中的对应颜色: 3:#F39B7FB2 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_3.csv', '--cluster_and_color', '3:#F39B7FB2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_3']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_3.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_3
+redo:False
+cluster_and_color3:#F39B7FB2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_3.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_4.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_4
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 4 在总图中的对应颜色: 4:#fbb612 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_4.csv', '--cluster_and_color', '4:#fbb612', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_4']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_4.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_4
+redo:False
+cluster_and_color4:#fbb612
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_4.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_5.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_5
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 5 在总图中的对应颜色: 5:#ba2f7b ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_5.csv', '--cluster_and_color', '5:#ba2f7b', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_5']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_5.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_5
+redo:False
+cluster_and_color5:#ba2f7b
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_5.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_6.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_6
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 6 在总图中的对应颜色: 6:#8491B4B2 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_6.csv', '--cluster_and_color', '6:#8491B4B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_6']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_6.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_6
+redo:False
+cluster_and_color6:#8491B4B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_6.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_7.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_7
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 7 在总图中的对应颜色: 7:#3C5488B2 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_7.csv', '--cluster_and_color', '7:#3C5488B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_7']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_7.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_7
+redo:False
+cluster_and_color7:#3C5488B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_7.csv 绘图完成！
+----------------------------------------------------------
+正在处理子文件: cluster_8.csv
+图片保存目标目录: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_8
+----------------------------------------------------------
+--- [INFO] 已精准锁定子群 8 在总图中的对应颜色: 8:#91D1C2B2 ---
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_8.csv', '--cluster_and_color', '8:#91D1C2B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_8']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/SR/SR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_8.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data/cluster_8
+redo:False
+cluster_and_color8:#91D1C2B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+【成功】文件 cluster_8.csv 绘图完成！
+==========================================================
+ 整个 Pipeline 处理完成！
+ 拆分目录 /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot_cluster_split/test/data 下的所有 CSV 已全部批量绘图完毕！
+==========================================================

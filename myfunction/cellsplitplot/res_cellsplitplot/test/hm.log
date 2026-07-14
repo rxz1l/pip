@@ -1,0 +1,28 @@
+nohup: ignoring input
+【步骤 1】正在调用 Awk 清洗数据...
+ -> 清洗完成: /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot/test/hm/cleaned_all_data.csv
+【步骤 2】正在调用 generate_cmd.py 生成绘图命令...
+【步骤 3】正在自动执行生成的绘图命令...
+-------------------------------------
+/share/nas1/dengdj/software/Miniforge/miniforge3/envs/py38/bin/python /share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py \
+                --cells_path /share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/AR/AR2.BSTViewer_project/cell_split/cell_conts/cells.npy \
+                --cluster_path /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot/test/hm/cleaned_all_data.csv \
+                --cluster_and_color "0:#E64B35B2,1:#4DBBD5B2,2:#00A087B2,3:#F39B7FB2,4:#fbb612,5:#ba2f7b,6:#8491B4B2,7:#3C5488B2,8:#91D1C2B2,9:#DC0000B2,10:#7E6148B2,11:#81C784,12:#FFB74D,13:#64B5F6,14:#BA68C8,15:#4DB6AC,16:#D4E157,17:#A1887F" \
+                --background_color '#FFFFFF' \
+                --save_dir /share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot/test/hm
+-------------------------------------
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/AR/AR2.BSTViewer_project/cell_split/cell_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot/test/hm/cleaned_all_data.csv', '--cluster_and_color', '0:#E64B35B2,1:#4DBBD5B2,2:#00A087B2,3:#F39B7FB2,4:#fbb612,5:#ba2f7b,6:#8491B4B2,7:#3C5488B2,8:#91D1C2B2,9:#DC0000B2,10:#7E6148B2,11:#81C784,12:#FFB74D,13:#64B5F6,14:#BA68C8,15:#4DB6AC,16:#D4E157,17:#A1887F', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot/test/hm']
+cells path:/share/nas1/renxz/project/DG108_s3000_Dendrobium_nobile/DZH-75171/script/analysis/AR/AR2.BSTViewer_project/cell_split/cell_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot/test/hm/cleaned_all_data.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/res_cellsplitplot/test/hm
+redo:False
+cluster_and_color0:#E64B35B2,1:#4DBBD5B2,2:#00A087B2,3:#F39B7FB2,4:#fbb612,5:#ba2f7b,6:#8491B4B2,7:#3C5488B2,8:#91D1C2B2,9:#DC0000B2,10:#7E6148B2,11:#81C784,12:#FFB74D,13:#64B5F6,14:#BA68C8,15:#4DB6AC,16:#D4E157,17:#A1887F
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+
+【完成】出图成功！

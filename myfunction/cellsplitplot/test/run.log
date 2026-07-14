@@ -1,0 +1,103 @@
+nohup: ignoring input
+==========================================================
+开始运行空间转录组集成分析与绘图管线
+==========================================================
+
+[STEP 1] 正在调用 R 脚本处理分群与注释数据...
+Attaching SeuratObject
+Seurat v4 was just loaded with SeuratObject v5; disabling v5 assays and
+validation routines, and ensuring assays work in strict v3/v4
+compatibility mode
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+创建输出目录: /share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs
+正在读取 Seurat RDS 文件...
+正在处理 MIA 数据...
+正在处理 Anchor 数据...
+正在处理 Spotlight 数据...
+正在处理 RCTD 数据...
+所有任务运行完成！
+
+[STEP 2] 正在调用 Python 脚本进行批量循环绘图...
+----------------------------------------------------------
+正在绘图: Anchor.csv
+图片保存至: /share/nas1/renxz/pip/function/cellsplitplot/test/plots/Anchor
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/Anchor.csv', '--cluster_and_color', 'Macrophage:#E64B35B2,Tumor:#4DBBD5B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/test/plots/Anchor']
+cells path:/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/Anchor.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/test/plots/Anchor
+redo:False
+cluster_and_colorMacrophage:#E64B35B2,Tumor:#4DBBD5B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+成功完成 Anchor.csv 的绘图任务。
+----------------------------------------------------------
+正在绘图: MIA_result.csv
+图片保存至: /share/nas1/renxz/pip/function/cellsplitplot/test/plots/MIA_result
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/MIA_result.csv', '--cluster_and_color', 'B:#E64B35B2,Macrophage:#4DBBD5B2,NK:#00A087B2,Tumor:#F39B7FB2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/test/plots/MIA_result']
+cells path:/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/MIA_result.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/test/plots/MIA_result
+redo:False
+cluster_and_colorB:#E64B35B2,Macrophage:#4DBBD5B2,NK:#00A087B2,Tumor:#F39B7FB2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+成功完成 MIA_result.csv 的绘图任务。
+----------------------------------------------------------
+正在绘图: RCTD.csv
+图片保存至: /share/nas1/renxz/pip/function/cellsplitplot/test/plots/RCTD
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/RCTD.csv', '--cluster_and_color', 'DC:#E64B35B2,Macrophage:#4DBBD5B2,Plasma:#00A087B2,T:#F39B7FB2,Tumor:#fbb612', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/test/plots/RCTD']
+cells path:/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/RCTD.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/test/plots/RCTD
+redo:False
+cluster_and_colorDC:#E64B35B2,Macrophage:#4DBBD5B2,Plasma:#00A087B2,T:#F39B7FB2,Tumor:#fbb612
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+成功完成 RCTD.csv 的绘图任务。
+----------------------------------------------------------
+正在绘图: Spotlight.csv
+图片保存至: /share/nas1/renxz/pip/function/cellsplitplot/test/plots/Spotlight
+['/share/nas1/fanlp/03.tools/UMICountDistPlot/cluster_plot.py', '--cells_path', '/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy', '--cluster_path', '/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/Spotlight.csv', '--cluster_and_color', 'B:#E64B35B2,DC:#4DBBD5B2,Macrophage:#00A087B2,NK:#F39B7FB2,Neu:#fbb612,Plasma:#ba2f7b,T:#8491B4B2,Tumor:#3C5488B2', '--background_color', '#FFFFFF', '--save_dir', '/share/nas1/renxz/pip/function/cellsplitplot/test/plots/Spotlight']
+cells path:/share/nas1/renxz/project/CJ167_S3000_Mus_musculus/DZH-75179/data/BMK_2_BSTViewer/GL261.BSTViewer_project/cell_split/nucleus_conts/cells.npy
+cluster path:/share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs/Spotlight.csv
+save dir:/share/nas1/renxz/pip/function/cellsplitplot/test/plots/Spotlight
+redo:False
+cluster_and_colorB:#E64B35B2,DC:#4DBBD5B2,Macrophage:#00A087B2,NK:#F39B7FB2,Neu:#fbb612,Plasma:#ba2f7b,T:#8491B4B2,Tumor:#3C5488B2
+[[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+成功完成 Spotlight.csv 的绘图任务。
+
+==========================================================
+🎉 所有任务执行完毕！
+中间 CSV 目录: /share/nas1/renxz/pip/function/cellsplitplot/test/intermediate_csvs
+最终图片目录: /share/nas1/renxz/pip/function/cellsplitplot/test/plots
+==========================================================
